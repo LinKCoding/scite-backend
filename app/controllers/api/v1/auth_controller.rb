@@ -6,7 +6,7 @@ class Api::V1::AuthController < ApplicationController
     if @user && @user.authenticate(params[:password])
       #YOU ARE WHO YOU SAY YOU ARE
       token = encode_token({ user_id: @user.id})
-      render json: {name: @user.first_name, jwt: token}
+      render json: { jwt: token}
     else
       render json: { error: "could not log in"}
     end
