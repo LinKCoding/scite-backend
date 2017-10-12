@@ -1,9 +1,13 @@
 class Api::V1::UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create]
 
   def create
     @user = User.new(first_name: params[:first_name], last_name: params[:last_name],  email: params[:email], password: params[:password])
     if @user.save
-      render json: @user
+      render json: { message: "#{@user.email} saved"}
+    else
+      render json: { message: "could not create account"}
+      # check after creating validations
     end
   end
 end
