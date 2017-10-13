@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :new, :index]
       post '/login', to: 'auth#create'
       get '/articles', to: 'articles#index'
+      post '/notes', to: 'notes#create'
     end
   end
 end
