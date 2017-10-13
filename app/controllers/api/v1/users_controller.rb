@@ -10,4 +10,18 @@ class Api::V1::UsersController < ApplicationController
       # check after creating validations
     end
   end
+
+  def notes
+    if @user
+      render json: { notes: @user.notes}
+    end
+  end
+
+  def lexicons
+    if @user
+      render json: { lexicons: @user.lexicons}
+    end
+  end
+
+
 end
