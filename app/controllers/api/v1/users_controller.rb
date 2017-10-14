@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
 
   def notes
     if @user
-      render json: { notes: @user.notes}
+      render json: @user.notes
     end
   end
 
