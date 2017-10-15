@@ -7,4 +7,5 @@ class Api::V1::ArticlesController < ApplicationController
     render json: @articles
   end
 
+
 end
