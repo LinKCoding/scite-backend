@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       # resources :users, only: [:create, :new, :index, :notes]
       post '/user', to: 'users#create'
       post '/login', to: 'auth#create'
+      post '/dictionary', to: 'dictionary#define'
       get '/notes/:id', to: 'notes#article'
       get '/articles', to: 'articles#index'
       post '/notes', to: 'notes#create'
