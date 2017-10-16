@@ -3,13 +3,10 @@ class Api::V1::DictionaryController < ApplicationController
 
 
   def define
-    url = "https://od-api.oxforddictionaries.com/api/v1/entries/en/#{params[:word]}"
+    url = "https://owlbot.info/api/v1/dictionary/#{params[:word]}"
 
-    response = RestClient.get(url, headers={'Accept' => 'application/json', 'app_id' => ENV["OXFORD_DICT_APP_ID"], 'app_key' => ENV["OXFORD_DICT_KEY"]})
-    response = JSON.parse(response)["results"][0]
-    byebug
-    response[0]['lexicalEntries'].map { |entry| {definition: entry["l
-exicalCategory"]} }
+    response = RestClient.get(url, headers={'Accept' => 'application/json'})
+    response = JSON.parse(response)
 
     render json: response
     # @articles = Article.all
