@@ -9,6 +9,17 @@ class Api::V1::NotesController < ApplicationController
     end
   end
 
+  def update
+    if @user
+      @note = Note.find_by(id: params[:id])
+      byebug
+      @note.content = params[:content]
+      @note.save
+
+      render json: { note: @note}
+    end
+  end
+
   def article
     if @user
 
