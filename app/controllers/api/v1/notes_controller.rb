@@ -3,8 +3,10 @@ class Api::V1::NotesController < ApplicationController
 
   def create
     if @user
+
       @article = Article.find_by(id: params[:article_id])
-      @note = Note.create(user_id: @user.id, article_id: @article.id, content: "")
+      @note = Note.create(user_id: @user.id, article_id: @article.id, content: '{"entityMap":{}, "blocks":[{"key":"ctf9b", "text":"I learned about...", "type":"unstyled", "depth":0, "inlineStyleRanges":[], "entityRanges":[], "data":{}}]}')
+
       render json: { note: @note }
     end
   end
