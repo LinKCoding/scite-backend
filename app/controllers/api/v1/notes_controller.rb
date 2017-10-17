@@ -4,7 +4,7 @@ class Api::V1::NotesController < ApplicationController
   def create
     if @user
       @article = Article.find_by(id: params[:article_id])
-      @note = Note.create(user_id: @user.id, article_id: @article.id)
+      @note = Note.create(user_id: @user.id, article_id: @article.id, content: "")
       render json: { note: @note }
     end
   end
@@ -12,7 +12,6 @@ class Api::V1::NotesController < ApplicationController
   def update
     if @user
       @note = Note.find_by(id: params[:id])
-      byebug
       @note.content = params[:content]
       @note.save
 
