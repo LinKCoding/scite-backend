@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post '/notes', to: 'notes#create'
       post '/notes/:id', to: 'notes#update'
       post '/lexicon', to: 'lexicons#create'
+      get '/lexicon', to: 'lexicons#index'
       get '/usernotes', to: 'users#notes'
       get '/userlexicons', to: 'users#lexicons'
 
