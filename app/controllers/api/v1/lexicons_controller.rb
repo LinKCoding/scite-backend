@@ -28,5 +28,15 @@ class Api::V1::LexiconsController < ApplicationController
     end
   end
 
+  def delete
+    if @user
+      @lexicon = Lexicon.find_by(id: params[:id])
+      @lexicon.destroy
+      
+      render json: @user.lexicons
+    end
+
+  end
+
 
 end

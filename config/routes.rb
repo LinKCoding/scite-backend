@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # resources :users, only: [:create, :new, :index, :notes]
-      post '/user', to: 'users#create'
+      post '/users', to: 'users#create'
       post '/login', to: 'auth#create'
       post '/dictionary', to: 'dictionary#define'
       get '/notes/:id', to: 'notes#article'
       get '/articles', to: 'articles#index'
       post '/notes/:id', to: 'notes#update'
       post '/notes', to: 'notes#create'
+      delete '/lexicon/:id', to: 'lexicons#delete'
       post '/lexicon/:id', to: 'lexicons#update'
       post '/lexicon', to: 'lexicons#create'
       get '/lexicon', to: 'lexicons#index'
