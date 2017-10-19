@@ -17,5 +17,16 @@ class Api::V1::LexiconsController < ApplicationController
     end
   end
 
+  def update
+    if @user
+      @lexicon = Lexicon.find_by(id: params[:id])
+      @lexicon.word = params[:word]
+      @lexicon.definition = params[:definition]
+      @lexicon.save
+
+      render json: @user.lexicons
+    end
+  end
+
 
 end
