@@ -31,4 +31,13 @@ class Api::V1::NotesController < ApplicationController
       render json: {note: @note, article: @article, lexicon: @lexicons}
     end
   end
+
+  def delete
+    if @user
+      @note = Note.find_by(id: params[:id])
+      @note.destroy
+
+      render json: @user.notes
+    end
+  end
 end

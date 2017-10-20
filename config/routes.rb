@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post '/dictionary', to: 'dictionary#define'
       get '/notes/:id', to: 'notes#article'
       get '/articles', to: 'articles#index'
+      delete '/notes/:id', to: 'notes#delete'
       post '/notes/:id', to: 'notes#update'
       post '/notes', to: 'notes#create'
       delete '/lexicon/:id', to: 'lexicons#delete'
