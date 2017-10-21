@@ -5,9 +5,12 @@ class Api::V1::NotesController < ApplicationController
     if @user
 
       @article = Article.find_by(id: params[:article_id])
-      @note = Note.create(user_id: @user.id, article_id: @article.id, content: '{"entityMap":{}, "blocks":[{"key":"ctf9b", "text":"I learned about...", "type":"unstyled", "depth":0, "inlineStyleRanges":[], "entityRanges":[], "data":{}}]}')
-
-      render json: { note: @note }
+      @note = Note.new(user_id: @user.id, article_id: @article.id, content: '{"entityMap":{}, "blocks":[{"key":"ctf9b", "text":"I learned about...", "type":"unstyled", "depth":0, "inlineStyleRanges":[], "entityRanges":[], "data":{}}]}')
+      if @note.save
+        render json: { note: @note }
+      else
+        render json: { error: "you can't make more than one article per note "}
+      end
     end
   end
 
@@ -23,7 +26,6 @@ class Api::V1::NotesController < ApplicationController
 
   def article
     if @user
-
       @note = Note.find_by(id: params[:id])
       @article = @note.article
       @lexicons = @note.lexicons
