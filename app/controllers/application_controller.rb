@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  include NewRelic::Agent::Instrumentation::ControllerInstrumentation
   before_action :authorized, except: [:welcome]
 
   def encode_token(payload)
