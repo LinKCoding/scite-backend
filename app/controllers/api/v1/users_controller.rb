@@ -7,8 +7,7 @@ class Api::V1::UsersController < ApplicationController
     if @user.save
       render json: { message: "#{@user.email} saved"}
     else
-      render json: { message: "could not create account"}
-      # check after creating validations
+      render json: { message: @user.errors.full_messages}, status: 406
     end
   end
 
