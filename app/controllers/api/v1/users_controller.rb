@@ -5,7 +5,9 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(first_name: params[:first_name], last_name: params[:last_name],  email: params[:email], password: params[:password])
 
     if @user.save
-      render json: { message: "#{@user.email} saved"}
+
+      token = encode_token({ user_id: @user.id})
+      render json: { jwt: token, user_id: @user.id}
     else
       render json: { message: @user.errors.full_messages}, status: 406
     end
