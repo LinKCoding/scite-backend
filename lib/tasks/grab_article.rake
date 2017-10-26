@@ -6,9 +6,10 @@ namespace :grab_article do
     response = RestClient.get ENV.fetch("BING_NEWS_URL"), {"Ocp-Apim-Subscription-Key": ENV.fetch("BING_API_KEY")}
     articles = JSON.parse(response.body)["value"]
     articles.each do |article|
-      if !article["url"].include?("foxnews")
+      if !article["url"].include?("foxnews") && !Article.find_by(name: article["name"])
         newArticle = Article.new(name: article["name"], url: article["url"], thumbnail: article["image"]["thumbnail"]["contentUrl"])
         newArticle.save
+        puts "#{newArticle["name"]} saved"
         exit
       end
     end
