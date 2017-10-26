@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
     if @user.save
 
       token = encode_token({ user_id: @user.id})
-      render json: { jwt: token, user_id: @user.id}
+      render json: { jwt: token, user_first_name: @user.first_name}
     else
       render json: { message: @user.errors.full_messages}, status: 406
     end
