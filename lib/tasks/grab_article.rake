@@ -14,4 +14,10 @@ namespace :grab_article do
       end
     end
   end
+
+  desc "Remove the last article"
+  task :remove => :environment do
+    Article.last.destroy
+    puts "last Article was destroyed"
+  end
 end
