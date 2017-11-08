@@ -14,7 +14,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def notes
-    byebug
     if @user
       render json: @user.notes.includes(:article)
     end

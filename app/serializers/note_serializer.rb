@@ -3,8 +3,11 @@ class NoteSerializer < ActiveModel::Serializer
 
   def article_name
     article = Article.find_by(id: object.article_id)
-    article.name if article
-
+    if article
+      article.name
+    else
+      nil
+    end
   end
 
   def date_created
